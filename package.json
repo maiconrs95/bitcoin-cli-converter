@@ -6,17 +6,33 @@
   "author": "Maicon Silva",
   "license": "MIT",
   "scripts": {
+    "clear": "rimraf bin",
+    "build": "npm run clear && ./node_modules/.bin/babel --out-dir bin src",
+    "build:watch": "npm run build -- --watch",
     "lint": "npx eslint src/**/*.js",
     "prepush": "npm run lint",
     "test": "npx mocha tests/**/*.spec.js",
     "test:tdd": "npm run test -- --watch",
     "test:coverage": "nyc npm test"
   },
+  "preferGlobal": true,
+  "bin": {
+    "bitcoin-cli-converter": "bin/main.js"
+  },
   "husky": {
     "hooks": {
       "pre-push": "npm run prepush"
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maiconrs95/bitcoin-cli-converter.git"
+  },
+  "keywords": [
+    "js",
+    "tdd",
+    "library"
+  ],
   "devDependencies": {
     "chai": "^4.2.0",
     "eslint": "^7.5.0",
@@ -24,6 +40,8 @@
     "eslint-plugin-import": "^2.22.0",
     "husky": "^4.2.5",
     "mocha": "^8.0.1",
-    "prettier": "^2.0.5"
+    "nyc": "^15.1.0",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2"
   }
 }
