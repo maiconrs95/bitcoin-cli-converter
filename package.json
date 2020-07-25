@@ -1,0 +1,29 @@
+{
+  "name": "bitcoin-cli-converter",
+  "version": "1.0.0",
+  "description": "A CLI to convert Bitcoin to any currency provided",
+  "main": "index.js",
+  "author": "Maicon Silva",
+  "license": "MIT",
+  "scripts": {
+    "lint": "npx eslint src/**/*.js",
+    "prepush": "npm run lint",
+    "test": "npx mocha tests/**/*.spec.js",
+    "test:tdd": "npm run test -- --watch",
+    "test:coverage": "nyc npm test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run prepush"
+    }
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "husky": "^4.2.5",
+    "mocha": "^8.0.1",
+    "prettier": "^2.0.5"
+  }
+}
