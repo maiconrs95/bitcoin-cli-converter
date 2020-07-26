@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "clear": "rimraf bin",
-    "build": "npm run clear && ./node_modules/.bin/babel --out-dir bin src",
+    "build": "npm run clear && npx babel --out-dir bin src",
     "build:watch": "npm run build -- --watch",
     "lint": "npx eslint src/**/*.js",
     "prepush": "npm run lint",
@@ -34,6 +34,8 @@
     "library"
   ],
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
     "chai": "^4.2.0",
     "eslint": "^7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
