@@ -7,5 +7,5 @@ const program = new Command();
 
 program
   .version(pkg.version)
-  .description('A CLI to convert Bitcoin to any currency provided')
+  .description(pkg.description)
   .parse(process.argv);
