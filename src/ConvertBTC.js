@@ -2,11 +2,14 @@ const request = require('request');
 const chalk = require('chalk');
 
 function ConvertBTC({ currency = 'USD', amount = 1 } = {}) {
-  const url = `
-    https://apiv2.bitcoinaverage.com/convert/global?from=BTC&to=${currency}&amount=${amount}
-  `;
+  const options = {
+    url: `https://apiv2.bitcoinaverage.com/convert/global?from=BTC&to=${currency}&amount=${amount}`,
+    headers: {
+      'x-ba-key': 'NDEyNjllMzBiNjg3NDRhYzg1NGYyY2Y5Y2FjYzc4NmQ',
+    },
+  };
 
-  request(url, (err, response, body) => {
+  request(options, (err, response, body) => {
     let apiResponse;
 
     try {
