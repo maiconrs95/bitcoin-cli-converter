@@ -26,4 +26,22 @@ describe('Main CLI', () => {
       done();
     });
   });
+
+  it('should return the currency option when bitcoin-CLI-converter --help ', (done) => {
+    exec(`${btcConverter} --help`, (err, stdout, stderr) => {
+      if (err) throw err;
+
+      expect(stdout.includes('--currency')).to.be.equal(true);
+      done();
+    });
+  });
+
+  it('should return the amount option when bitcoin-CLI-converter --help ', (done) => {
+    exec(`${btcConverter} --help`, (err, stdout, stderr) => {
+      if (err) throw err;
+
+      expect(stdout.includes('--amount')).to.be.equal(true);
+      done();
+    });
+  });
 });
