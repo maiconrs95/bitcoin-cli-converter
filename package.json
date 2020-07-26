@@ -42,11 +42,15 @@
     "eslint-plugin-import": "^2.22.0",
     "husky": "^4.2.5",
     "mocha": "^8.0.1",
+    "nock": "^13.0.2",
     "nyc": "^15.1.0",
     "prettier": "^2.0.5",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0"
   },
   "dependencies": {
-    "commander": "^6.0.0"
+    "commander": "^6.0.0",
+    "request": "^2.88.2"
   }
 }
