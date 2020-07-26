@@ -55,7 +55,7 @@ describe('ConverterBTC', () => {
       })
       .reply(200, responseMock);
 
-    ConvertBTC('BLR', 10);
+    ConvertBTC({ currency: 'BLR', amount: 10 });
 
     setTimeout(() => {
       expect(consoleStub).to.have.been.calledWith('10 BTC to BLR = 2490.75');

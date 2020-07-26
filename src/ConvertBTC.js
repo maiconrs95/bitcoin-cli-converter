@@ -1,6 +1,6 @@
 const request = require('request');
 
-function ConvertBTC(currency = 'USD', amount = 1) {
+function ConvertBTC({ currency = 'USD', amount = 1 } = {}) {
   const url = `
     https://apiv2.bitcoinaverage.com/convert/global?from=BTC&to=${currency}&amount=${amount}
   `;
