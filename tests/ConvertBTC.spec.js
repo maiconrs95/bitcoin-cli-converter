@@ -1,4 +1,5 @@
 const nock = require('nock');
+const chalk = require('chalk');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 
@@ -40,7 +41,13 @@ describe('ConverterBTC', () => {
     ConvertBTC();
 
     setTimeout(() => {
-      expect(consoleStub).to.have.been.calledWith('1 BTC to USD = 2490.75');
+      expect(consoleStub)
+        .to
+        .have
+        .been
+        .calledWith(
+          `${chalk.red(1)} BTC to ${chalk.cyan('USD')} = ${chalk.yellow(2490.75)}`,
+        );
       done();
     }, 300);
   });
@@ -58,7 +65,13 @@ describe('ConverterBTC', () => {
     ConvertBTC({ currency: 'BLR', amount: 10 });
 
     setTimeout(() => {
-      expect(consoleStub).to.have.been.calledWith('10 BTC to BLR = 2490.75');
+      expect(consoleStub)
+        .to
+        .have
+        .been
+        .calledWith(
+          `${chalk.red(10)} BTC to ${chalk.cyan('BLR')} = ${chalk.yellow(2490.75)}`,
+        );
       done();
     }, 300);
   });
@@ -76,7 +89,13 @@ describe('ConverterBTC', () => {
     ConvertBTC({ currency: 'BLR', amount: 10 });
 
     setTimeout(() => {
-      expect(consoleStub).to.have.been.calledWith('Something went wrong in the API. Try in a few minutes.');
+      expect(consoleStub)
+        .to
+        .have
+        .been
+        .calledWith(
+          chalk.red('Something went wrong in the API. Try in a few minutes.'),
+        );
       done();
     }, 300);
   });
