@@ -6,7 +6,14 @@ function ConvertBTC({ currency = 'USD', amount = 1 } = {}) {
   `;
 
   request(url, (err, response, body) => {
-    const apiResponse = JSON.parse(body);
+    let apiResponse;
+
+    try {
+      apiResponse = JSON.parse(body);
+    } catch (parserError) {
+      console.log('Something went wrong in the API. Try in a few minutes.');
+      return parserError;
+    }
 
     console.log(`${amount} BTC to ${currency} = ${apiResponse.price}`);
   });

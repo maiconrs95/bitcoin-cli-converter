@@ -62,4 +62,22 @@ describe('ConverterBTC', () => {
       done();
     }, 300);
   });
+
+  it('should message user when api reply with error', (done) => {
+    nock('https://apiv2.bitcoinaverage.com')
+      .get('/convert/global')
+      .query({
+        from: 'BTC',
+        to: 'BLR',
+        amount: 10,
+      })
+      .replyWithError('Erro');
+
+    ConvertBTC({ currency: 'BLR', amount: 10 });
+
+    setTimeout(() => {
+      expect(consoleStub).to.have.been.calledWith('Something went wrong in the API. Try in a few minutes.');
+      done();
+    }, 300);
+  });
 });
