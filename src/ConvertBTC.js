@@ -1,4 +1,4 @@
-const request = require('request');
+const request = require('request-promise-native');
 const chalk = require('chalk');
 const ora = require('ora');
 
@@ -17,21 +17,23 @@ function ConvertBTC({ currency = 'USD', amount = 1 } = {}) {
 
   spinner.start();
 
-  request(options, (err, response, body) => {
-    let apiResponse;
+  return request(options)
+    .then((body) => {
+      spinner.stop();
 
-    spinner.stop();
-    try {
-      apiResponse = JSON.parse(body);
-    } catch (parserError) {
-      console.log(
-        chalk.red('Something went wrong in the API. Try in a few minutes.'),
-      );
-      return parserError;
-    }
+      return body;
+    })
+    .then((body) => {
+      const apiResponse = JSON.parse(body);
 
-    console.log(`${chalk.red(amount)} BTC to ${chalk.cyan(currency)} = ${chalk.yellow(apiResponse.price)}`);
-  });
+      console.info(`${chalk.red(amount)} BTC to ${chalk.cyan(currency)} = ${chalk.yellow(apiResponse.price)}`);
+    })
+    .catch((err) => {
+      spinner.stop();
+      console.info(chalk.red('Something went wrong in the API. Try in a few minutes.'));
+
+      return err;
+    });
 }
 
 module.exports = ConvertBTC;
