@@ -1,5 +1,11 @@
 const request = require('request');
 const chalk = require('chalk');
+const ora = require('ora');
+
+const spinner = ora({
+  text: 'Retrieving Bitcoin data...',
+  color: 'yellow',
+});
 
 function ConvertBTC({ currency = 'USD', amount = 1 } = {}) {
   const options = {
@@ -9,9 +15,12 @@ function ConvertBTC({ currency = 'USD', amount = 1 } = {}) {
     },
   };
 
+  spinner.start();
+
   request(options, (err, response, body) => {
     let apiResponse;
 
+    spinner.stop();
     try {
       apiResponse = JSON.parse(body);
     } catch (parserError) {

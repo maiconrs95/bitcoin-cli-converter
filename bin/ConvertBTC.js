@@ -4,6 +4,13 @@ var request = require('request');
 
 var chalk = require('chalk');
 
+var ora = require('ora');
+
+var spinner = ora({
+  text: 'Retrieving Bitcoin data...',
+  color: 'yellow'
+});
+
 function ConvertBTC() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       _ref$currency = _ref.currency,
@@ -14,11 +21,13 @@ function ConvertBTC() {
   var options = {
     url: "https://apiv2.bitcoinaverage.com/convert/global?from=BTC&to=".concat(currency, "&amount=").concat(amount),
     headers: {
-      'x-ba-key': process.env.API_KEY
+      'x-ba-key': 'NDEyNjllMzBiNjg3NDRhYzg1NGYyY2Y5Y2FjYzc4NmQ'
     }
   };
+  spinner.start();
   request(options, function (err, response, body) {
     var apiResponse;
+    spinner.stop();
 
     try {
       apiResponse = JSON.parse(body);
